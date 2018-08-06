@@ -1,0 +1,6 @@
+D:\Visual Studio Projects\TSMCSharp\bin\Debug\TSMCSharp.dll
+D:\Visual Studio Projects\TSMCSharp\bin\Debug\TSMCSharp.pdb
+D:\Visual Studio Projects\TSMCSharp\obj\Debug\TSMCSharp.csproj.CoreCompileInputs.cache
+D:\Visual Studio Projects\TSMCSharp\obj\Debug\TSMCSharp.dll
+D:\Visual Studio Projects\TSMCSharp\obj\Debug\TSMCSharp.pdb
+D:\Visual Studio Projects\TSMCSharp\obj\Debug\TSMCSharp.csprojAssemblyReference.cache
