@@ -49,7 +49,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Item.cs" />
-    <Compile Include="ItemList.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="TradeSkillMaster.cs" />
     <Compile Include="TSMClient.cs" />

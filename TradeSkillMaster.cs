@@ -78,8 +78,17 @@ namespace TSMCSharp
 
         }
 
-        public void DownloadRegionData(string region, string appName)
+        public void DownloadRegionData(string region, string appName, string filePath = null)
         {
+
+            string savePath = string.Empty;
+
+            if (filePath == null)
+            {
+                savePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + $@"\{appName}\{region}\Region Auction Data.json";
+            }
+            else
+                savePath = filePath;
             string regionID = region.ToUpper();
 
             Request request = new Request(User_Agent);
@@ -89,13 +98,22 @@ namespace TSMCSharp
             string firstPass = request.Response.Replace("[", @"{ ""Auctions"": [");
             string secondPass = firstPass.Replace("]", "]}");
 
-            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + $@"\{appName}\{region}\"))
-                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + $@"\{appName}\{region}\");
+            if (!Directory.Exists(savePath))
+                Directory.CreateDirectory(savePath);
 
-            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + $@"\{appName}\{region}\Region Auction Data.json", secondPass);
+            File.WriteAllText(savePath, secondPass);
         }
-        public void DownloadRealmData(string realm, string region, string appName)
+        public void DownloadRealmData(string realm, string region, string appName, string filePath = null)
         {
+            string savePath = string.Empty;
+
+            if (filePath == null)
+            {
+                savePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + $@"\{appName}\{region}\Region Auction Data.json";
+            }
+            else
+                savePath = filePath;
+
             string regionID = region.ToUpper();
             string realmID = realm.Replace(" ", "-").ToLower();
 
@@ -106,10 +124,10 @@ namespace TSMCSharp
             string firstPass = request.Response.Replace("[", @"{ ""Auctions"": [");
             string secondPass = firstPass.Replace("]", "]}");
 
-            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + $@"\{appName}\{region}\{realm}\"))
-                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + $@"\{appName}\{region}\{realm}\");
+            if (!Directory.Exists(savePath))
+                Directory.CreateDirectory(savePath);
 
-            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + $@"\{appName}\{region}\{realm}\Auction Data.json", secondPass);
+            File.WriteAllText(savePath, secondPass);
             
         }
         public string ReturnAPIKey()
