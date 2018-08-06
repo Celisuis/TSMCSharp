@@ -40,3 +40,7 @@ Client.TSM.DownloadRealmData(realm, region, appName)
 ```
 
 All Downloaded Auction Data goes into AppData\Roaming\AppName\Region\Region Auction Data.json and AppData\Roaming\AppName\Region\Realm\Auction Data.json respectively.
+
+## Build
+Open the Solution in VS Studio and Build. Pre-Built DLL Files are located in the bin\debug folder currently.
+
