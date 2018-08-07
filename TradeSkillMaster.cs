@@ -78,7 +78,7 @@ namespace TSMCSharp
 
         }
 
-        public void DownloadRegionData(string region, string appName, string filePath = null)
+        public void DownloadRegionData(string region, string appName, DownloadType downloadType = DownloadType.Array, string filePath = null)
         {
 
             string savePath = string.Empty;
@@ -89,21 +89,34 @@ namespace TSMCSharp
             }
             else
                 savePath = filePath;
+                
+            if (!Directory.Exists(savePath))
+                Directory.CreateDirectory(savePath);
+
+
             string regionID = region.ToUpper();
 
             Request request = new Request(User_Agent);
 
             request.Get($"{API_URL}item/region/{regionID}?format=json&apiKey={API_Key}");
 
-            string firstPass = request.Response.Replace("[", @"{ ""Auctions"": [");
-            string secondPass = firstPass.Replace("]", "]}");
+            switch(downloadType)
+            {
+                case DownloadType.Array:
+                    File.WriteAllText(savePath, request.Response);
+                    break;
+                case DownloadType.Object:
+                    string firstPass = request.Response.Replace("[", @"{ ""Auctions"": [");
+                    string secondPass = firstPass.Replace("]", "]}");
+                    File.WriteAllText(savePath, secondPass);
+                    break;
+            }
+            
+            
 
-            if (!Directory.Exists(savePath))
-                Directory.CreateDirectory(savePath);
 
-            File.WriteAllText(savePath, secondPass);
         }
-        public void DownloadRealmData(string realm, string region, string appName, string filePath = null)
+        public void DownloadRealmData(string realm, string region, string appName, DownloadType downloadType = DownloadType.Array, string filePath = null)
         {
             string savePath = string.Empty;
 
@@ -113,6 +126,9 @@ namespace TSMCSharp
             }
             else
                 savePath = filePath;
+
+            if (!Directory.Exists(savePath))
+                Directory.CreateDirectory(savePath);
 
             string regionID = region.ToUpper();
             string realmID = realm.Replace(" ", "-").ToLower();
@@ -121,13 +137,19 @@ namespace TSMCSharp
 
             request.Get($"{API_URL}item/{regionID}/{realmID}?format=json&apiKey={API_Key}");
 
-            string firstPass = request.Response.Replace("[", @"{ ""Auctions"": [");
-            string secondPass = firstPass.Replace("]", "]}");
-
-            if (!Directory.Exists(savePath))
-                Directory.CreateDirectory(savePath);
-
-            File.WriteAllText(savePath, secondPass);
+            switch (downloadType)
+            {
+                case DownloadType.Array:
+                    File.WriteAllText(savePath, request.Response);
+                    break;
+                case DownloadType.Object:
+                    string firstPass = request.Response.Replace("[", @"{ ""Auctions"": [");
+                    string secondPass = firstPass.Replace("]", "]}");
+                    File.WriteAllText(savePath, secondPass);
+                    break;
+            }
+            
+            
             
         }
         public string ReturnAPIKey()
@@ -159,5 +181,11 @@ namespace TSMCSharp
 
         #endregion
 
+    }
+
+    public enum DownloadType
+    {
+        Object,
+        Array
     }
 }
