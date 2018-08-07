@@ -31,12 +31,12 @@ List<Item> ItemList = Client.TSM.RetrieveAllRealmItems(realm, region)
 
 ### Downloading Regional Information
 ```c#
-Client.TSM.DownloadRegionData(region, appName, filePath)
+Client.TSM.DownloadRegionData(region, appName, DownloadType, filePath)
 ```
 
 ### Downloading Realm Information
 ```c#
-Client.TSM.DownloadRealmData(realm, region, appName, filePath)
+Client.TSM.DownloadRealmData(realm, region, DownloadType, appName, filePath)
 ```
 
 FilePath variable is optional, if it isn't set, Downloads default to:
@@ -45,6 +45,8 @@ FilePath variable is optional, if it isn't set, Downloads default to:
 - AppData\Roaming\AppName\Region\Realm\Auction Data.json 
 
 respectively.
+
+DownloadType is an optional enum property that allows you to choose whether to download the Auction Data as a JArray(Standard) or parse it into a JObject. The Default Settings for this is Array.
 
 ## Build
 Open the Solution in VS Studio and Build. Pre-Built DLL Files are located in the bin\debug folder currently.
