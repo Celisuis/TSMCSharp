@@ -2,6 +2,11 @@
 
 The TradeSkillMaster C# Wrapper is a client based .dll file that allows you to pull and parse the JSON information from the API.
 
+### Releases
+
+Up-To-Date Releases can now be found in the Release Tab.
+
+
 ## Usage
 
 ### Connecting
