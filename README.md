@@ -54,5 +54,5 @@ respectively.
 DownloadType is an optional enum property that allows you to choose whether to download the Auction Data as a JArray(Standard) or parse it into a JObject. The Default Settings for this is Array.
 
 ## Build
-Open the Solution in VS Studio and Build. Pre-Built DLL Files are located in the bin\debug folder currently.
+Open the Solution in VS Studio and Build. Pre-Built DLL Files are located on the Release Page. Nuget Package coming soon!
 
